@@ -1,0 +1,51 @@
+service: express-lambda
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-south-1
+  stage: prod
+  deploymentMethod: direct
+  environment:
+    APP_ENV_VARIABLE: FOOBAR
+    USER_NAME: 
+    PASSWORD: 
+    PORT: 3001
+
+plugins:
+  - serverless-offline
+  - serverless-prune-plugin
+
+functions:
+  hello:
+    handler: userService.hello
+    events:
+      - httpApi:
+          path: /hello
+          method: get
+  getUser:
+    handler: userService.getUser
+    events:
+      - httpApi:
+          path: /user/{userId}
+          method: get
+  createUser:
+    handler: userService.createUser
+    events:
+      - httpApi:
+          path: /user
+          method: post
+  updateUser:
+    handler: userService.updateUser
+    events:
+      - httpApi:
+          path: /user/{userId}
+          method: patch
+  deleteUser:
+    handler: userService.deleteUser
+    events:
+      - httpApi:
+          path: /user/{userId}
+          method: delete
