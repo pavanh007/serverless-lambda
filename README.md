@@ -6,10 +6,16 @@ To install dependencies:
 bun install
 ```
 
-To run:
+To run local:
 
 ```bash
-bun run index.ts
+serverless offline
+```
+
+To deploy:
+
+```bash
+serverless deploy
 ```
 
 This project was created using `bun init` in bun v0.6.3. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
